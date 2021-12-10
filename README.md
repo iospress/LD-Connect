@@ -5,11 +5,11 @@ LD Connect is a Linked Data portal for IOS Press scientometrics, consisting of a
 The ontology file can be found at  `data/ontology/ontology.ttl`. Two schema diagrams below show ontology fragments of `iospress:Publication` and `iospress:Contributor` respectively.
 
 <div align=center>
-<img src="data/ontology/schema/publication_onto.png" width='80%' height = '80%'>
+<img src="data/ontology/schema/publication_onto.png" width='80%' height = '80%'> <figcaption>Main classes, relations for modeling iospress:Publication</figcaption>
 </div>
 
 <div align=center>
-<img src="data/ontology/schema/people_onto.png" width='80%' height = '80%'>
+<img src="data/ontology/schema/people_onto.png" width='80%' height = '80%'><figcaption>Main classes, relations for modeling iospress:Contributor</figcaption>
 </div>
 
 A sample SPARQL query is provided below, which is used to retrieve information about papers whose first author is from affiliations located in China.
@@ -35,35 +35,35 @@ select ?title (group_concat(?keyword; separator=',')
 ```
 
 ## Embeddings
-A version of pre-trained embeddings are located in  `data/embeddings/`. Both document and knowledge graph embeddings are included. Document embeddings are provided in plain text formats along with its model format suitable for being used with gensim 3.3.0 library. More information about these embeddings can be found at `http://ld.iospress.nl/about/about-data/`.
+A version of pre-trained embeddings are located in  `data/embeddings/`. Right now we have provided document embeddings in plain text format (see `data/embeddings/IOS-Doc2Vec/model-txt/`). After we upgraded the storage for this repository, we will continue uploading document embeddings used with gensim 3.3.0 library, knowledge graph embeddings and a JSON file about how same entities (e.g., contributors, affiliations, etc.) are linked together through co-reference resolution. More information about these embeddings can be found at `http://ld.iospress.nl/about/about-data/`, which is also the download site in LD Connect.
 
 ## IOS Press scientometrics
 IOS Press scientometrics can be accessed through `http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics/`. These scientometrics include Home (a choropleth map), Country Collaboration, Author Map, Author Similarity, Paper Similarity, Keyword Graph and Streamgraph. Please select a journal category first and then a journal of interest for bibliographic analysis, visualization and embedding-based similarity search. An example about how information is displayed for the Semantic Web journal are attached below.
 
 <div align=center>
-<img src="visualization/home.png" width='80%' height = '80%'>
+<img src="visualization/home.png" width='80%' height = '80%'><figcaption>Home</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/country_collab.png" width='80%' height = '80%'>
+<img src="visualization/country_collab.png" width='80%' height = '80%'><figcaption>Country Collaboration</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/author_map.png" width='80%' height = '80%'>
+<img src="visualization/author_map.png" width='80%' height = '80%'><figcaption>Author Map</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/author_sim.png" width='80%' height = '80%'>
+<img src="visualization/author_sim.png" width='80%' height = '80%'><figcaption>Author Similarity</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/paper_sim.png" width='80%' height = '80%'>
+<img src="visualization/paper_sim.png" width='80%' height = '80%'><figcaption>Paper Similarity</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/keyword_graph.png" width='80%' height = '80%'>
+<img src="visualization/keyword_graph.png" width='80%' height = '80%'><figcaption>Keyword Graph</figcaption>
 </div>
 
 <div align=center>
-<img src="visualization/streamgraph.png" width='80%' height = '80%'>
+<img src="visualization/streamgraph.png" width='80%' height = '80%'><figcaption>Streamgraph</figcaption>
 </div>
