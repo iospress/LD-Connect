@@ -36,19 +36,21 @@ select ?title (group_concat(?keyword; separator=',')
 ```
 
 ## Embeddings
-A version of pre-trained embeddings are located in  [`data/embeddings/`](data/embeddings/). Right now we have provided document embeddings in plain text format (see [`data/embeddings/IOS-Doc2Vec/model-txt/`](data/embeddings/IOS-Doc2Vec/model-txt/)). After we upgraded the storage for this repository, we will continue uploading document embeddings used with [gensim](https://radimrehurek.com/gensim/) 3.3.0 library, knowledge graph embeddings and a JSON file about how same entities (e.g., contributors, affiliations, etc.) are linked after co-reference resolution. More information about these embeddings can be found at [`http://ld.iospress.nl/about/about-data`](http://ld.iospress.nl/about/about-data), which is also the download site in LD Connect.
+A version of pre-trained embeddings are located in  [`data/embeddings/`](data/embeddings/). Right now we have provided document embeddings in plain text format (see [`data/embeddings/IOS-Doc2Vec/model-txt/`](data/embeddings/IOS-Doc2Vec/model-txt/)). The [`doc2vec.txt`](data/embeddings/IOS-Doc2Vec/model-txt/doc2vec.txt) is the Doc2Vec model. The [`doc2vec_voc.txt`](data/embeddings/IOS-Doc2Vec/model-txt/doc2vec_voc.txt) contains a list of all the paper entity URLs of the document embedding model. The [`w2v.txt`](data/embeddings/IOS-Doc2Vec/model-txt/w2v.txt) is the corresponding Word2Vec model that has a vocabulary size of 105839. The [`w2v_voc.txt`](data/embeddings/IOS-Doc2Vec/model-txt/w2v_voc.txt) contains a list of the word vocabulary of the word embedding model. The dimension of both document and word embeddings is 200. 
+
+After we upgraded the storage for this repository, we will continue uploading knowledge graph embeddings containing contributor information in plain text format and a JSON file about how same entities (e.g., contributors, affiliations, etc.) are linked after co-reference resolution. More information about these embeddings can be found at [`http://ld.iospress.nl/about/about-data`](http://ld.iospress.nl/about/about-data), which is also the download site in LD Connect.
 
 ## IOS Press scientometrics
 
 ### Getting started
-IOS Press scientometrics can be downloaded from the [`scientometrics`](scientometrics/) folder, migrated to other academic knowledge graphs and reused for relevant applications and research. Follow the instructions below to set it up locally and run it.
+IOS Press scientometrics can be downloaded from the [`scientometrics`](scientometrics/) folder, migrated to other academic knowledge graphs and reused for relevant applications and research. Follow the instructions below to set it up and run locally.
 
-1. In the terminal, type the following commands.
+1. After cloning this repository, type the following commands in the terminal.
 	```console
 	$ cd scientometrics/
 	$ npm install
 	```
-2. Copy the pre-trained Doc2Vec model in plain text format to the [`scientometrics/sites/data/IOS-Doc2Vec-TXT/`](scientometrics/sites/data/IOS-Doc2Vec-TXT/) directory, and the pre-trained TransE model to the [`scientometrics/sites/data/IOS-TransE/`](scientometrics/sites/data/IOS-TransE/) directory.
+2. Create a folder `data/` within [`scientometrics/sites/`](`scientometrics/sites/`) with two subfolders called `IOS-Doc2Vec-TXT/` and `IOS-TransE/` respectively. Copy the pre-trained Doc2Vec model files to the `scientometrics/sites/data/IOS-Doc2Vec-TXT/` directory, and the pre-trained TransE model files to the `scientometrics/sites/data/IOS-TransE/` directory.
 3. Launch the server on an open port:
 	```console
 	$ node src/server/server.js
