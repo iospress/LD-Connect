@@ -13,7 +13,7 @@ The ontology file can be found at  [`data/ontology/ontology.ttl`](data/ontology/
 </div>
 
 
-A sample SPARQL query is provided below, which is used to retrieve information about papers whose first author is from affiliations located in China.
+Semantic search is available at [`http://ld.iospress.nl/explore/semantic-search/`](http://ld.iospress.nl/explore/semantic-search/). A sample SPARQL query is provided below, which is used to retrieve information about papers whose first author is from affiliations located in China.
 ```SPARQL
 select ?title (group_concat(?keyword; separator=',')
        as ?keywords) ?year ?journal ?first_author_name ?org_name 
