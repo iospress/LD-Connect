@@ -1,5 +1,5 @@
 # LD-Connect
-[LD Connect](http://ld.iospress.nl/) is a Linked Data portal for [IOS Press scientometrics]((http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics)), consisting of all IOS Press bibliographic data enriched by geographic information. This is a work funded by [IOS Press](https://www.iospress.com/) in collaboration with the [STKO lab](https://github.com/stko-lab) at [UC Santa Barbara](https://www.ucsb.edu/). A SPARQL endpoint for retrieving information in LD Connect is published as [`http://ld.iospress.nl:7200/`]([http://ld.iospress.nl:7200`).
+[LD Connect](http://ld.iospress.nl/) is a Linked Data portal for [IOS Press scientometrics](http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics), consisting of all IOS Press bibliographic data enriched by geographic information. This is a work funded by [IOS Press](https://www.iospress.com/) in collaboration with the [STKO lab](https://github.com/stko-lab) at [UC Santa Barbara](https://www.ucsb.edu/). A SPARQL endpoint for retrieving information in LD Connect is published as [`http://ld.iospress.nl:7200/`]([http://ld.iospress.nl:7200`).
 
 ## Ontology
 The ontology file can be found at  [`data/ontology/ontology.ttl`](data/ontology/ontology.ttl). Two schema diagrams below show ontology fragments of `iospress:Publication` and `iospress:Contributor` respectively.
