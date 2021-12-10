@@ -1,5 +1,5 @@
 # LD-Connect
-[LD Connect](http://ld.iospress.nl/) is a Linked Data portal for [IOS Press scientometrics](http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics), consisting of all IOS Press bibliographic data enriched by geographic information. This is a work funded by [IOS Press](https://www.iospress.com/) in collaboration with the [STKO lab](https://github.com/stko-lab) at [UC Santa Barbara](https://www.ucsb.edu/). A SPARQL endpoint for retrieving information in LD Connect is published as [`http://ld.iospress.nl:7200/`]([http://ld.iospress.nl:7200).
+[LD Connect](http://ld.iospress.nl/) is a Linked Data portal for [IOS Press scientometrics](http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics), consisting of all IOS Press bibliographic data enriched by geographic information. This is a work funded by [IOS Press](https://www.iospress.com/) in collaboration with the [STKO lab](https://github.com/stko-lab) at [UC Santa Barbara](https://www.ucsb.edu/). A SPARQL endpoint for retrieving information in LD Connect is published as [`http://ld.iospress.nl:7200/`]([http://ld.iospress.nl:7200). In this documentation, we provide descriptions about shared ontology, embeddings, the scientometric system along with instructions on how to reuse it.
 
 ## Ontology
 The ontology file can be found at  [`data/ontology/ontology.ttl`](data/ontology/ontology.ttl). Two schema diagrams below show ontology fragments of [`iospress:Publication`](http://ld.iospress.nl/rdf/ontology/Publication) and [`iospress:Contributor`](http://ld.iospress.nl/rdf/ontology/Contributor) respectively.
@@ -39,6 +39,26 @@ select ?title (group_concat(?keyword; separator=',')
 A version of pre-trained embeddings are located in  [`data/embeddings/`](data/embeddings/). Right now we have provided document embeddings in plain text format (see [`data/embeddings/IOS-Doc2Vec/model-txt/`](data/embeddings/IOS-Doc2Vec/model-txt/)). After we upgraded the storage for this repository, we will continue uploading document embeddings used with [gensim](https://radimrehurek.com/gensim/) 3.3.0 library, knowledge graph embeddings and a JSON file about how same entities (e.g., contributors, affiliations, etc.) are linked after co-reference resolution. More information about these embeddings can be found at [`http://ld.iospress.nl/about/about-data`](http://ld.iospress.nl/about/about-data), which is also the download site in LD Connect.
 
 ## IOS Press scientometrics
+
+### Getting started
+IOS Press scientometrics can be downloaded from the [`scientometrics`](scientometrics/) folder, migrated to other academic knowledge graphs and reused for relevant applications and research. Follow the instructions below to set it up locally and run it.
+
+1. In the terminal, type the following commands.
+	```console
+	$ cd scientometrics/
+	$ npm install
+	```
+2. Copy the pre-trained Doc2Vec model in plain text format to the [`scientometrics/sites/data/IOS-Doc2Vec-TXT/`](scientometrics/sites/data/IOS-Doc2Vec-TXT/) directory, and the pre-trained TransE model to the [`scientometrics/sites/data/IOS-TransE/`](scientometrics/sites/data/IOS-TransE/) directory.
+3. Launch the server on an open port:
+	```console
+	$ node src/server/server.js
+	```
+	You can modify the port by changing `N_PORT` in server.js. The default is set to be 7200.
+
+4. Now, open a browser and navigate to `http://localhost:N_PORT/iospress_scientometrics`.
+
+
+### Descriptions
 IOS Press scientometrics can be accessed through [`http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics`](http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics) (*note that the HTTP header should be used instead of HTTPS). These scientometrics include Home (a choropleth map), Country Collaboration, Author Map, Author Similarity, Paper Similarity, Keyword Graph and Streamgraph. Please select a journal category first and then a journal of interest for bibliographic analysis, visualization and embedding-based similarity search. An example about how information is displayed for the Semantic Web journal are attached below.
 
 <div align=center>
