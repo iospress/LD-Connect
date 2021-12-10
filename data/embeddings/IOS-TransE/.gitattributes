@@ -1,1 +1,2 @@
 TransE_person.txt filter=lfs diff=lfs merge=lfs -text
+entity_sameAs_merge_mapping_iri.json filter=lfs diff=lfs merge=lfs -text
