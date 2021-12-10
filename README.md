@@ -5,11 +5,11 @@ LD Connect is a Linked Data portal for IOS Press scientometrics, consisting of a
 The ontology file can be found at  `data/ontology/ontology.ttl`. Two schema diagrams below show ontology fragments of `iospress:Publication` and `iospress:Contributor` respectively.
 
 <figure align=center>
-<img src="data/ontology/schema/publication_onto.png" width='80%' height = '80%'><figcaption>Main classes, relations for modeling iospress:Publication</figcaption>
+<img src="data/ontology/schema/publication_onto.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="data/ontology/schema/people_onto.png" width='80%' height = '80%'><figcaption>Main classes, relations for modeling iospress:Contributor</figcaption>
+<img src="data/ontology/schema/people_onto.png" width='80%' height = '80%'>
 </figure>
 
 
@@ -42,29 +42,29 @@ A version of pre-trained embeddings are located in  `data/embeddings/`. Right no
 IOS Press scientometrics can be accessed through `http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics/`. These scientometrics include Home (a choropleth map), Country Collaboration, Author Map, Author Similarity, Paper Similarity, Keyword Graph and Streamgraph. Please select a journal category first and then a journal of interest for bibliographic analysis, visualization and embedding-based similarity search. An example about how information is displayed for the Semantic Web journal are attached below.
 
 <figure align=center>
-<img src="visualization/home.png" width='80%' height = '80%'><figcaption>Home</figcaption>
+<img src="visualization/home.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/country_collab.png" width='80%' height = '80%'><figcaption>Country Collaboration</figcaption>
+<img src="visualization/country_collab.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/author_map.png" width='80%' height = '80%'><figcaption>Author Map</figcaption>
+<img src="visualization/author_map.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/author_sim.png" width='80%' height = '80%'><figcaption>Author Similarity</figcaption>
+<img src="visualization/author_sim.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/paper_sim.png" width='80%' height = '80%'><figcaption>Paper Similarity</figcaption>
+<img src="visualization/paper_sim.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/keyword_graph.png" width='80%' height = '80%'><figcaption>Keyword Graph</figcaption>
+<img src="visualization/keyword_graph.png" width='80%' height = '80%'>
 </figure>
 
 <figure align=center>
-<img src="visualization/streamgraph.png" width='80%' height = '80%'><figcaption>Streamgraph</figcaption>
+<img src="visualization/streamgraph.png" width='80%' height = '80%'>
 </figure>
