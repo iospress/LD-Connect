@@ -3,8 +3,32 @@ LD Connect is a Linked Data portal for IOS Press scientometrics, consisting of a
 
 ## Ontology
 The ontology file can be found at  `data/ontology/ontology.ttl`. Two schema diagrams below show ontology fragments of `iospress:Publication` and `iospress:Contributor` respectively.
-![Main classes, relations for `iospress:Publication`](data/ontology/schema/publication_onto.png)
-![Main classes, relations for `iospress:Contributor`](data/ontology/schema/people_onto.png)
+
+<center class = 'half'>
+<img src="data/ontology/schema/publication_onto.png" width='50%' height = '50%'><img src="data/ontology/schema/people_onto.png" width='50%' height = '50%'>
+</center>
+
+A sample SPARQL query is provided below, which is used to retrieve information about papers whose first author is from affiliations located in China.
+```SPARQL
+select ?title (group_concat(?keyword; separator=',')
+       as ?keywords) ?year ?journal ?first_author_name ?org_name 
+{
+    ?paper iospress:publicationTitle ?title;
+           iospress:publicationIncludesKeyword ?keyword;
+           iospress:publicationDate ?date;
+           iospress:articleInIssue/iospress:issueInVolume/
+           iospress:volumeInJournal ?journal;
+           iospress:publicationAuthorList ?author_list.
+    ?author_list rdf:_0 ?first_author.
+    ?first_author iospress:contributorFullName ?first_author_name;
+                  iospress:contributorAffiliation ?org.
+    ?org iospress:geocodingInput ?org_name ;
+		 iospress:geocodingOutput/
+		 iospress-geocode:country ?org_country.    
+    bind(year(?date) as ?year)
+    values ?org_country {"China"@en}
+} group by ?title ?year ?journal ?first_author_name ?org_name
+```
 
 ## Embeddings
 A version of pre-trained embeddings are located in  `data/embeddings/`. Both document and knowledge graph embeddings are included. Document embeddings are provided in plain text formats along with its model format suitable for being used with gensim 3.3.0 library. More information about these embeddings can be found at `http://ld.iospress.nl/about/about-data/`.
