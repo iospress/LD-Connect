@@ -88,3 +88,6 @@ IOS Press scientometrics can be accessed through [`http://stko-roy.geog.ucsb.edu
 <div align=center>
 <img src="visualization/streamgraph.png" width='80%' height = '80%'>
 </div>
+
+## License
+This repository is distributed under the CC0-1.0 License. See LICENSE for more information.
