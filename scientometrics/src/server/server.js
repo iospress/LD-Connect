@@ -1,15 +1,7 @@
 const fs = require('fs');
-const fse = require('fs-extra');
-const os = require('os');
 const express = require('express');
-const pyshell = require('python-shell');
 const w2v = require("word2vec");
-const request = require('request');
 const path = require('path');
-const multer = require('multer');
-const basic_auth = require('express-basic-auth');
-const axios = require('axios');
-const querystring = require('querystring');
 
 const N_PORT = 7200; // define N_PORT with your own available port number
 const R_SLUG = /^[a-z][a-z0-9_-]+$/;
@@ -37,105 +29,6 @@ w2v.loadModel(path.join(__dirname, '../../sites/iospress_scientometrics/data/IOS
 	transE_model = model;
 });
 
-y_app.get('/d2v_sim', (req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-	var currentPaperURL = req.query.doc;
-
-	// var options = {
-	// 	mode: 'text',
-	// 	pythonPath: '/Users/zilongliu/opt/anaconda3/bin/python', // change python Path to where python is installed on your computer
-	// 	scriptPath: path.join(__dirname, '../../sites/iospress_scientometrics/model/'),
-	// 	args: [currentPaperURL]
-	// };
-
-	// pyshell.PythonShell.run('d2v_id_sim.py', options, function (err, results) {
-	// 	if (err) throw err;
-	// 	// results is an array consisting of messages collected during execution
-	// 	results = JSON.parse(results);
-	// 	res.json(results);	
-	// });
-
-	var simDoc = d2v_model.mostSimilar(currentPaperURL, 10);
-	res.json(simDoc);
-});
-
-y_app.get('/d2v_info', (req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-	var currentPaperURL = req.query.doc;
-
-	// var options = {
-	// 	mode: 'text',
-	// 	pythonPath: '/Users/zilongliu/opt/anaconda3/bin/python', // change python Path to where python is installed on your computer
-	// 	scriptPath: path.join(__dirname, '../../sites/iospress_scientometrics/model/'),
-	// 	args: [currentPaperURL]
-	// };
-
-	// console.log(currentPaperURL);
-	// pyshell.PythonShell.run('d2v_id_info.py', options, function (err, results) {
-	// 	if (err) throw err;
-	// 	// results is an array consisting of messages collected during execution
-	// 	results = JSON.parse(results);
-	// 	res.json(results);	
-	// });
-	var vecDoc = d2v_model.getVectors([ currentPaperURL ]);
-	res.json(vecDoc);
-});
-
-y_app.get('/transE_sim', (req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-	var currentAuthorURL = req.query.author;
-
-	// var options = {
-	// 	mode: 'text',
-	// 	pythonPath: '/Users/zilongliu/opt/anaconda3/bin/python', // change python Path to where python is installed on your computer
-	// 	scriptPath: path.join(__dirname, '../../sites/iospress_scientometrics/model/'),
-	// 	args: [currentAuthorURL]
-	// };
-
-	// pyshell.PythonShell.run('transE_id_sim.py', options, function (err, results) {
-	// 	if (err) throw err;
-	// 	// results is an array consisting of messages collected during execution
-	// 	results = JSON.parse(results);
-	// 	res.json(results);	
-	// });
-
-	var simAuthor = transE_model.mostSimilar(currentAuthorURL, 10);
-	res.json(simAuthor);
-});
-
-y_app.get('/transE_info', (req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-	var currentAuthorURL = req.query.author;
-
-	// var options = {
-	// 	mode: 'text',
-	// 	pythonPath: '/Users/zilongliu/opt/anaconda3/bin/python', // change python Path to where python is installed on your computer
-	// 	scriptPath: path.join(__dirname, '../../sites/iospress_scientometrics/model/'),
-	// 	args: [currentAuthorURL]
-	// };
-
-	// pyshell.PythonShell.run('transE_id_info.py', options, function (err, results) {
-	// 	if (err) throw err;
-	// 	// results is an array consisting of messages collected during execution
-	// 	results = JSON.parse(results);
-	// 	res.json(results);
-	// });
-
-	var vecAuthor = transE_model.getVectors([ currentAuthorURL ]);
-	res.json(vecAuthor);
-});
 
 y_app.get('/sameAs_json', (req, res, next) => {
 	fs.readFile(path.join(__dirname, '../../sites/iospress_scientometrics/data/IOS-TransE/entity_sameAs_merge_mapping_iri.json'), function(err, data) {
@@ -143,18 +36,43 @@ y_app.get('/sameAs_json', (req, res, next) => {
 	})
 });
 
+y_app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+  next();
+});
 
-const A_MODS = [
-	'author',
-	'browser',
-	'country',
-	'keywords',
-	'map',
-	'papersim',
-	'streamgraph',
-];
+y_app.get('/d2v_sim', (req, res, next) => {
+	
+	var currentPaperURL = req.query.doc;
 
-const PD_TEMPLATE = path.join('src', 'template');
+	var simDoc = d2v_model.mostSimilar(currentPaperURL, 10);
+	res.json(simDoc);
+});
+
+y_app.get('/d2v_info', (req, res, next) => {
+	var currentPaperURL = req.query.doc;
+
+	var vecDoc = d2v_model.getVectors([ currentPaperURL ]);
+	res.json(vecDoc);
+});
+
+y_app.get('/transE_sim', (req, res, next) => {
+	var currentAuthorURL = req.query.author;
+
+	var simAuthor = transE_model.mostSimilar(currentAuthorURL, 10);
+	res.json(simAuthor);
+});
+
+y_app.get('/transE_info', (req, res, next) => {
+	var currentAuthorURL = req.query.author;
+
+	var vecAuthor = transE_model.getVectors([ currentAuthorURL ]);
+	res.json(vecAuthor);
+});
+
 
 const A_STATICS = ['css', 'js', 'img', 'lib'];
 for(let si_static of A_STATICS) {
