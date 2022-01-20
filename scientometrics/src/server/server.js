@@ -3,12 +3,21 @@ const express = require('express');
 const w2v = require("word2vec");
 const path = require('path');
 
-const N_PORT = 7200; // define N_PORT with your own available port number
 const R_SLUG = /^[a-z][a-z0-9_-]+$/;
 const R_SLUG_PATH = /^\/[a-z][a-z0-9_-]+(\/|$)/;
 const R_SLUG_ROOT = /^[a-z][a-z0-9_-]+\/$/;
 
 const y_app = express();
+const dotenv = require('dotenv').config()
+
+console.log("Env")
+console.log(dotenv)
+
+// const N_PORT = 7200; // define N_PORT with your own available port number
+const N_PORT = process.env.PORT; // define N_PORT with your own available port number
+const DOC_2_VEC_PATH = process.env.DOC_2_VEC_PATH
+const TRANSE_PATH = process.env.TRANSE_PATH
+const ENTITY_MAPPING_PATH = process.env.ENTITY_MAPPING_PATH
 
 y_app.set('view engine', 'pug');
 y_app.set('views', 'src/_views');
@@ -19,19 +28,19 @@ y_app.use(express.urlencoded({
 
 // read the pre-trained Doc2Vec model
 var d2v_model = {};
-w2v.loadModel(path.join(__dirname, '../../sites/iospress_scientometrics/data/IOS-Doc2Vec-TXT/doc2vec.txt'), function( error, model ) {
+w2v.loadModel(path.join(__dirname, DOC_2_VEC_PATH), function( error, model ) {
 	d2v_model = model;
 });
 
 // read the pre-trained TransE model
 var transE_model = {};
-w2v.loadModel(path.join(__dirname, '../../sites/iospress_scientometrics/data/IOS-TransE/TransE_person.txt'), function( error, model ) {
+w2v.loadModel(path.join(__dirname, TRANSE_PATH), function( error, model ) {
 	transE_model = model;
 });
 
 
 y_app.get('/sameAs_json', (req, res, next) => {
-	fs.readFile(path.join(__dirname, '../../sites/iospress_scientometrics/data/IOS-TransE/entity_sameAs_merge_mapping_iri.json'), function(err, data) {
+	fs.readFile(path.join(__dirname, ENTITY_MAPPING_PATH), function(err, data) {
 		res.send(data);
 	})
 });
@@ -122,4 +131,4 @@ y_app.get(R_SLUG_PATH, (d_req, d_res, f_next) => {
 
 y_app.use(express.static('sites'));
 
-y_app.listen(N_PORT, '0.0.0.0', () => console.log(`App listening on port ${N_PORT}!`));
+y_app.listen(N_PORT, '0.0.0.0', () => console.log(`App listening on port ${N_PORT}! - http://localhost:${N_PORT}/iospress_scientometrics`));
