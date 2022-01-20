@@ -12,7 +12,6 @@ async function CountryCollab() {
   content += '<div class="module-info" style="text-align:left;width:1024px;height:60px;position:relative;color:#fff">'
              + 'The <i>Chord Diagram</i> below shows country collaboration patterns based on the co-authorship of the papers from the selected journal. The <i>arc length</i> represents the percentage of the total collaborative papers from each country. Hover over the <i>Chord</i> to view the country-to-country probabilistic affinity.</div>';
   content += '<div id ="cc"></div>';
-  //content += "<div id='loading'><img src='/img/loading.gif'/></div>;"
 
   $('#app').hide().html(content).fadeIn('slow');
 

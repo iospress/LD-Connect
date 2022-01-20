@@ -12,7 +12,6 @@ async function HomeLoadApp() {
       hm_content += '<a style="color:rgb(156,158,222)">Scientometrics</a> play an increasingly important role in facilitating the understanding of different research fields as well as research topics within them. This scientometric system, <a href="http://stko-roy.geog.ucsb.edu:7200/iospress_scientometrics/" style="color:pink">IOS Press scientometrics</a>, allows users to visually explore how the journals of different research fields have changed and grown over the past few years as well as their spatial characteristics. Moreover, embedding-based similarity search is achieved on both authors and papers to find their counterparts. The work on this scientometric system is built upon <a href="http://ld.iospress.nl" style="color:pink">LD Connect</a>, and is funded by <a href = "https://www.iospress.com" style="color:pink">IOS Press</a> in collaboration with <a href = "https://github.com/stko-lab" style="color:pink">STKO Lab</a> at UC Santa Barbara.  Select a journal category and a corresponding journal from the drop-down list and a module from the menu above to explore the IOS Press data in further details.</p><p>The map below is a <i>Choropleth Map</i> visualization showing the countries of authors in the selected journal. The country is colored in proportion to the number of authors contributing. Countries with higher than average authors are shaded in darker colors while those with fewer than average are shown in lighter shades.</p></div>';
 
   hm_content += "<div id='map-container' style='position:relative;width:100%;text-align:center;height:500px;'><svg id='cartomap' style='background-color:#000;width:100%;height:100%;margin:0;'></svg></div> ";
-  //hm_content += "<div id='loading'><img src='/img/loading.gif'/></div>;"
   $('#app').hide().html(hm_content).fadeIn('slow');
 
 
@@ -126,7 +125,7 @@ function choropleth_map(){
         (w / 2 + 10) + "v" + (h + 20) + "h-" + (w + 20) +"z");
   }
 
-  d3.json('/lib/world1.topojson').then(function(topology){
+  d3.json('./lib/world1.topojson').then(function(topology){
    
     let data = getCountryData();
    

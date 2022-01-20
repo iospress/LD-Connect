@@ -317,7 +317,7 @@ $("#journal").change(function () {
 	h_author_names = {};
 	h_keywords = {};
 
-	$('#app').hide().html("<div id='loading'><img src='/img/loading.gif'/></div>;").fadeIn('slow');
+	$('#app').hide().html("<div id='loading'><img src='./img/loading.gif'/></div>;").fadeIn('slow');
 
 	getJournalInfo($(this).val());
 

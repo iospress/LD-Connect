@@ -352,7 +352,7 @@ _STREAMGRAPH.setUpHTMLContainers = function(container) {
 
 	content += '<div style="height:300px;overflow:hidden;width:680px;" id="sg_map"></div>';
 
-	content += "<div id='loading'><img src='/img/loading.gif'/></div>;"
+	content += "<div id='loading'><img src='./img/loading.gif'/></div>;"
 
 	$('#app').hide().html(content).fadeIn('slow');
 };
