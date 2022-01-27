@@ -36,7 +36,7 @@ w2v.loadModel(path.join(__dirname, TRANSE_PATH), function( error, model ) {
 });
 
 
-app.get(ROOTPATH + '/sameAs_json', (req, res, next) => {
+app.get(ROOTPATH + 'sameAs_json', (req, res, next) => {
 	fs.readFile(path.join(__dirname, ENTITY_MAPPING_PATH), function(err, data) {
 		res.send(data);
 	})
@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get(ROOTPATH + '/d2v_sim', (req, res, next) => {
+app.get(ROOTPATH + 'd2v_sim', (req, res, next) => {
 	
 	var currentPaperURL = req.query.doc;
 
@@ -58,21 +58,21 @@ app.get(ROOTPATH + '/d2v_sim', (req, res, next) => {
 	res.json(simDoc);
 });
 
-app.get(ROOTPATH + '/d2v_info', (req, res, next) => {
+app.get(ROOTPATH + 'd2v_info', (req, res, next) => {
 	var currentPaperURL = req.query.doc;
 
 	var vecDoc = d2v_model.getVectors([ currentPaperURL ]);
 	res.json(vecDoc);
 });
 
-app.get(ROOTPATH + '/transE_sim', (req, res, next) => {
+app.get(ROOTPATH + 'transE_sim', (req, res, next) => {
 	var currentAuthorURL = req.query.author;
 
 	var simAuthor = transE_model.mostSimilar(currentAuthorURL, 10);
 	res.json(simAuthor);
 });
 
-app.get(ROOTPATH + '/transE_info', (req, res, next) => {
+app.get(ROOTPATH + 'transE_info', (req, res, next) => {
 	var currentAuthorURL = req.query.author;
 
 	var vecAuthor = transE_model.getVectors([ currentAuthorURL ]);
