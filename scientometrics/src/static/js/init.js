@@ -30,7 +30,7 @@ let h_entity_sameAs = {};
 
 	// read sameAs json
 	var request = new XMLHttpRequest();
-	request.open("get", '/sameAs_json');
+	request.open("get", 'sameAs_json');
 	request.onload = function() {
 		h_entity_sameAs = JSON.parse(request.responseText);
 	}
@@ -317,7 +317,7 @@ $("#journal").change(function () {
 	h_author_names = {};
 	h_keywords = {};
 
-	$('#app').hide().html("<div id='loading'><img src='/img/loading.gif'/></div>;").fadeIn('slow');
+	$('#app').hide().html("<div id='loading'><img src='./img/loading.gif'/></div>;").fadeIn('slow');
 
 	getJournalInfo($(this).val());
 

@@ -23,8 +23,6 @@ async function loadKeywordGraph() {
 
 	$("#app").hide().html($("#app").innerHTML).fadeIn('slow');
 
-	// $('<div id="loading"><img src="/img/loading.gif"/></div>')
-	// 	.appendTo(d_app);
 
 	// initialize controls
 	var q_controls = $('<div style="text-align:center"></div>').appendTo(d_app);
